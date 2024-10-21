@@ -1,3 +1,4 @@
+using Game.Interactables;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ namespace Game.Rooms
         [SerializeField] Light roomLight;
         [SerializeField] List<Transform> itemSpawnPositions = new List<Transform>();
 
+        [Header("Unlocked Path")]
+        [SerializeField] Animator pathAnimator;
+        [SerializeField] string pathTrigger;
+
         [Header("Runtime Info")]
         [ReadOnly, SerializeField] int requiredItems;
         [ReadOnly, SerializeField] int itemsFound;
@@ -23,15 +28,35 @@ namespace Game.Rooms
             {
                 Transform randomSpawnPos = itemSpawnPositions[Random.Range(0, itemSpawnPositions.Count)];
 
-                Instantiate(itemsToSpawn[Random.Range(0, itemsToSpawn.Length)], randomSpawnPos.position, Quaternion.identity);
+                PickupAble spawnedPickup =
+                    Instantiate(itemsToSpawn[Random.Range(0, itemsToSpawn.Length)], randomSpawnPos.position, Quaternion.identity)
+                    .GetComponent<PickupAble>();
+
+                // Assign event so the pickup knows what room it has been picked up
+                spawnedPickup.OnObjectTaken += FoundItem;
 
                 itemSpawnPositions.Remove(randomSpawnPos);
             }
         }
 
-        void FoundItem()
+        void FoundItem(GameObject item)
         {
+            item.SetActive(false);
 
+            itemsFound++;
+
+            CheckForCompletion();
+        }
+
+        bool CheckForCompletion()
+        {
+            if (itemsFound == requiredItems)
+            {
+                roomLight.color = Color.green;
+                pathAnimator.SetTrigger(pathTrigger);
+                return true;
+            }
+            return false;
         }
 
         private void OnDrawGizmos()

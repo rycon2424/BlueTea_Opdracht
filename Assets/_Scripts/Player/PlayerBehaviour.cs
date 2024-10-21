@@ -59,7 +59,6 @@ namespace Game.Player
         {
             Locomotion locomotionState = new Locomotion(this);
 
-
             statemachine = new StateMachine(locomotionState);
             statemachine.SwitchState(locomotionState);
         }
@@ -86,6 +85,11 @@ namespace Game.Player
         public void CheckForInteractions()
         {
             playerInteraction.CheckForInteractions();
+        }
+
+        public void PickUpItem()
+        {
+            playerInteraction.TryPickupItem();
         }
 
         public bool GroundedCheck()

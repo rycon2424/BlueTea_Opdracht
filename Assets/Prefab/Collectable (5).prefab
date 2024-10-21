@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4411364311242252958}
   - component: {fileID: 7421607012637240730}
   - component: {fileID: 5552419767387658673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8279116598980628364}
   - component: {fileID: 5266876540461045312}
   - component: {fileID: 3358748584017739258}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7650851445221736837}
   - component: {fileID: 2938732591014317072}
   - component: {fileID: 3579914728705110819}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 6289999000164375974}
   - component: {fileID: 7697256351783401252}
   - component: {fileID: 4784066671507668877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 6893076007788871929}
   - component: {fileID: 2318190165178422789}
   - component: {fileID: 6015911137347574800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 821060740523547816}
   - component: {fileID: 8943431907123524626}
   - component: {fileID: 4919813945450573067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1917176068794942795}
   - component: {fileID: 2825867653987476538}
-  m_Layer: 0
+  - component: {fileID: 4133705469641844399}
+  - component: {fileID: -2762964935688458284}
+  m_Layer: 7
   m_Name: Collectable (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,3 +559,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4133705469641844399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761998238867289417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57c2e8a484e20e448d505a21ce38e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-2762964935688458284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8761998238867289417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.35, y: 0.35, z: 0.35}
+  m_Center: {x: 0, y: 0.2, z: 0}

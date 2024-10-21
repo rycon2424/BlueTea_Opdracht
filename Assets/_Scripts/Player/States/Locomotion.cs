@@ -20,11 +20,13 @@ namespace Game.StateMachines.States
         public override void OnStateEnter(float[] values)
         {
             Owner.PlayerInput.FirstPersonPlayer.Jump.started += Jump;
+            Owner.PlayerInput.FirstPersonPlayer.Interact.started += PickUpItem;
         }
 
         public override void OnStateExit()
         {
             Owner.PlayerInput.FirstPersonPlayer.Jump.started -= Jump;
+            Owner.PlayerInput.FirstPersonPlayer.Interact.started -= PickUpItem;
         }
 
         public override void OnStateUpdate()
@@ -54,12 +56,19 @@ namespace Game.StateMachines.States
             Owner.CharController.Move(velocity * Time.deltaTime);
         }
 
+        // Input Callbacks
+
         void Jump(InputAction.CallbackContext context)
         {
             if (grounded)
             {
                 velocity.y = Mathf.Sqrt(Owner.jumpHeight * -2f * Owner.gravity);
             }
+        }
+
+        void PickUpItem(InputAction.CallbackContext context)
+        {
+            Owner.PickUpItem();
         }
     }
 }

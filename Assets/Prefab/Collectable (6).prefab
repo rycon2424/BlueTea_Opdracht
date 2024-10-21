@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3811398800834936094}
   - component: {fileID: 5192388902069537838}
   - component: {fileID: 4109388102019761607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2903521282906579920}
   - component: {fileID: 5802455889301040186}
-  m_Layer: 0
+  - component: {fileID: -954827487869182944}
+  - component: {fileID: -9209138725578833563}
+  m_Layer: 7
   m_Name: Collectable (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +144,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-954827487869182944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916435264488863196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57c2e8a484e20e448d505a21ce38e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-9209138725578833563
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916435264488863196}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.35, y: 0.35, z: 0.35}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &5370856904063461886
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +188,7 @@ GameObject:
   - component: {fileID: 1962136173459760285}
   - component: {fileID: 3956185554293594422}
   - component: {fileID: 5298107472203881101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +271,7 @@ GameObject:
   - component: {fileID: 6803849606572994776}
   - component: {fileID: 1335506738827227739}
   - component: {fileID: 2681327693253490970}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +354,7 @@ GameObject:
   - component: {fileID: 31335089377679918}
   - component: {fileID: 4662870424536478367}
   - component: {fileID: 4802694383709779592}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +437,7 @@ GameObject:
   - component: {fileID: 879606689185715430}
   - component: {fileID: 3606942427927874948}
   - component: {fileID: 3935815825337712242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +520,7 @@ GameObject:
   - component: {fileID: 1313444712988222005}
   - component: {fileID: 3235568694780118270}
   - component: {fileID: 728594592212853015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: art_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

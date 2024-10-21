@@ -14,27 +14,25 @@ namespace Game.Player
         [SerializeField] Transform cameraTransform;
 
         private IHoverAble lastHoveredItem;
+        private GameObject currentHittingObject;
 
         public void CheckForInteractions()
         {
             RaycastHit rayHit;
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
-            Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 2);
+            //Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 2);
+
+            StoppedHovering();
+            currentHittingObject = null;
 
             if (Physics.Raycast(ray, out rayHit, interactionRange, interactionMask))
             {
-                StoppedHovering();
-
                 lastHoveredItem = rayHit.transform.GetComponent<IHoverAble>();
 
                 lastHoveredItem?.OnHovered();
 
-                Debug.Log("Hit object: " + rayHit.collider.name);
-            }
-            else
-            {
-                StoppedHovering();
+                currentHittingObject = rayHit.transform.gameObject;
             }
         }
 
@@ -44,6 +42,21 @@ namespace Game.Player
             {
                 lastHoveredItem.OnStoppedHovering();
             }
+        }
+
+        public bool TryPickupItem()
+        {
+            if (currentHittingObject != null)
+            {
+                IPickupAble pickup = currentHittingObject.GetComponent<IPickupAble>();
+
+                pickup.OnPickedUp();
+
+                currentHittingObject = null;
+
+                return true;
+            }
+            return false;
         }
     }
 }

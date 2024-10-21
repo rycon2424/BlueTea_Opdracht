@@ -1,3 +1,4 @@
+using Game.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,11 +8,22 @@ namespace Game.Manager
 {
     public class PopupManager : MonoBehaviour
     {
+        public static PopupManager Singleton;
+
         [SerializeField] TMP_Text popupText;
+
+        private void Awake()
+        {
+            if (Singleton != null)
+            {
+                Destroy(Singleton.gameObject);
+            }
+            Singleton = this;
+        }
 
         private void Start()
         {
-            ShowPopup("Find all the rotating art pieces in the room to continue!");
+            ShowPopup("Find and pick up all the rotating art pieces in the room to continue!");
         }
 
         public void ShowPopup(string textToShow)
