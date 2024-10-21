@@ -7,17 +7,17 @@ namespace Game.Pooling
 {
     public class ObjectPool : MonoBehaviour
     {
-        public static ObjectPool instance;
+        public static ObjectPool Singleton;
         public List<PooledObjectSO> poolObjects = new List<PooledObjectSO>();
 
         private void Awake()
         {
-            if (instance)
+            if (Singleton)
             {
                 Destroy(this);
                 return;
             }
-            instance = this;
+            Singleton = this;
         }
 
         private void Start()
@@ -44,7 +44,7 @@ namespace Game.Pooling
         /// <summary>
         /// Spawn an item using a GameObject as key
         /// </summary>
-        public GameObject SpawnObject(GameObject objectToSpawn, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
+        public GameObject SpawnObject(GameObject objectToSpawn, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 1)
         {
             foreach (PooledObjectSO pool in poolObjects)
             {
@@ -62,7 +62,7 @@ namespace Game.Pooling
         /// <summary>
         /// Spawn an item knowing the name of the pool
         /// </summary>
-        public GameObject SpawnObject(string poolName, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
+        public GameObject SpawnObject(string poolName, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 1)
         {
             foreach (PooledObjectSO pool in poolObjects)
             {

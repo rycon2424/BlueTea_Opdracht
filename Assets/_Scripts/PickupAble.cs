@@ -1,4 +1,5 @@
 using Game.Manager;
+using Game.Pooling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace Game.Interactables
         public void OnPickedUp()
         {
             OnObjectTaken?.Invoke(gameObject);
+
+            ObjectPool.Singleton.SpawnObject("Smoke", transform.position, transform.rotation.eulerAngles);
         }
 
         public void OnHovered()

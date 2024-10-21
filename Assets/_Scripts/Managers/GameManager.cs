@@ -1,8 +1,10 @@
+using Game.Manager;
 using Game.Player;
 using Game.Rooms;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Managers
@@ -19,6 +21,11 @@ namespace Game.Managers
 
         [Header("Rooms")]
         [SerializeField] Room[] roomsToSetup;
+
+        [Header("References")]
+        [SerializeField] TMP_Text timerText;
+
+        Coroutine gameTimer;
 
         public delegate void StartGame();
         public event StartGame OnStartGame;
@@ -47,6 +54,8 @@ namespace Game.Managers
 
             SpawnItemsInRooms(difficultySelected.itemCount);
 
+            gameTimer = StartCoroutine(GameTimer());
+
             OnStartGame?.Invoke();
         }
 
@@ -57,6 +66,32 @@ namespace Game.Managers
                 room.SetupRoom(randomItems, itemsPerRoom);
             }
         }
+
+        IEnumerator GameTimer()
+        {
+            float elapsedTime = 0f;
+            while (true)
+            {
+                elapsedTime += Time.deltaTime;
+
+                int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+                int seconds = Mathf.FloorToInt(elapsedTime % 60);
+                int milliseconds = Mathf.FloorToInt((elapsedTime * 1000) % 1000) / 10;
+
+                // Right formatting
+                timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+
+                yield return null;
+            }
+        }
+
+        // Called from the trigger events script using Unity Events
+        public void FinishedGame()
+        {
+            StopCoroutine(gameTimer);
+            PopupManager.Singleton.ShowPopup($"You won with an amazing time of {timerText.text}!");
+        }
+
 
         [System.Serializable]
         struct GameDifficulties

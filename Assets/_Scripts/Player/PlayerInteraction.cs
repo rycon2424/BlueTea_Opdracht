@@ -21,10 +21,10 @@ namespace Game.Player
             RaycastHit rayHit;
             Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
 
-            //Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 2);
-
+            // Reset all stored values for next check
             StoppedHovering();
             currentHittingObject = null;
+            lastHoveredItem = null;
 
             if (Physics.Raycast(ray, out rayHit, interactionRange, interactionMask))
             {
