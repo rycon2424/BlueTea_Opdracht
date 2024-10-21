@@ -14,7 +14,6 @@ namespace Game.Player
         void Start()
         {
             playerBody = transform.root;
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void UpdateCamera(Vector2 cameraMovement)

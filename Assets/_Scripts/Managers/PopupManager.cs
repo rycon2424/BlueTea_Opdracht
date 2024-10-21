@@ -11,7 +11,7 @@ namespace Game.Manager
 
         private void Start()
         {
-            ShowPopup("Find all the objects in the room to continue!");
+            ShowPopup("Find all the rotating art pieces in the room to continue!");
         }
 
         public void ShowPopup(string textToShow)

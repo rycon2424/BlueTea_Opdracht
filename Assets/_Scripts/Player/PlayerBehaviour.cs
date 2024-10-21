@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 using UnityEngine.InputSystem;
 using Game.StateMachines;
 using Game.StateMachines.States;
+using Game.Managers;
 
 namespace Game.Player
 {
@@ -29,6 +30,14 @@ namespace Game.Player
         private GameControls input;
         private StateMachine statemachine;
 
+        public void StartPlayer()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            input.Enable();
+        }
+
         void Start()
         {
             controller = GetComponent<CharacterController>();
@@ -37,6 +46,13 @@ namespace Game.Player
 
             SetupInput();
             SetupStateMachine();
+
+            GameManager.Singleton.OnStartGame += StartPlayer;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Singleton.OnStartGame -= StartPlayer;
         }
 
         void SetupStateMachine()
@@ -51,7 +67,7 @@ namespace Game.Player
         void SetupInput()
         {
             input = new GameControls();
-            input.Enable();
+            input.Disable();
         }
 
         void Update()

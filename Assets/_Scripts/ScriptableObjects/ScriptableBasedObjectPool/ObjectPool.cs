@@ -50,15 +50,10 @@ namespace Game.Pooling
             {
                 if (pool.objects.Contains(objectToSpawn))
                 {
-                    int length = pool.spawnedObjects.Count;
-
-                    if (length == 0)
+                    if (pool.spawnedObjects.Count > 0)
                     {
-                        Debug.Log($"The Pool for {objectToSpawn.name} is empty!");
-                        return null;
+                        return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                     }
-
-                    return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                 }
             }
             return null;
@@ -73,15 +68,10 @@ namespace Game.Pooling
             {
                 if (pool.poolName == poolName)
                 {
-                    int length = pool.spawnedObjects.Count;
-
-                    if (length == 0)
+                    if (pool.spawnedObjects.Count > 0)
                     {
-                        Debug.Log($"The Pool {poolName} is empty!");
-                        return null;
+                        return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                     }
-
-                    return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                 }
             }
             return null;
