@@ -7,8 +7,8 @@ namespace Game.StateMachines.States
 	public interface IState
 	{
 		void OnStateEnter(float[] values);
-		void OnStateUpdate();
 		void OnStateExit();
+		void OnStateUpdate();
 
 		void OnStateFixedUpdate();
 	}

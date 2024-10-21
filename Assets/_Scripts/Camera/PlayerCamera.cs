@@ -6,16 +6,27 @@ namespace Game.Player
 {
     public class PlayerCamera : MonoBehaviour
     {
-        // Start is called before the first frame update
+        public float mouseSensitivity = 100f;
+
+        private Transform playerBody;
+        private float xRotation = 0f;
+
         void Start()
         {
-
+            playerBody = transform.root;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void UpdateCamera(Vector2 cameraMovement)
         {
+            float mouseX = cameraMovement.x * mouseSensitivity * Time.deltaTime;
+            float mouseY = cameraMovement.y * mouseSensitivity * Time.deltaTime;
 
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerBody.Rotate(Vector3.up * mouseX);
         }
     }
 }
