@@ -18,12 +18,13 @@ namespace Game.Player
         public float jumpHeight = 2f;
 
         [Header("Grounded Settings")]
-        public Transform groundCheck;
-        public LayerMask groundMask;
+        [SerializeField] Transform groundCheck;
+        [SerializeField] LayerMask groundMask;
 
         private bool isGrounded;
 
         private PlayerCamera playerCamera;
+        private PlayerInteraction playerInteraction;
         private CharacterController controller;
         private GameControls input;
         private StateMachine statemachine;
@@ -32,6 +33,7 @@ namespace Game.Player
         {
             controller = GetComponent<CharacterController>();
             playerCamera = GetComponentInChildren<PlayerCamera>();
+            playerInteraction = GetComponent<PlayerInteraction>();
 
             SetupInput();
             SetupStateMachine();
@@ -63,6 +65,11 @@ namespace Game.Player
         {
             Vector2 cameraInput = input.FirstPersonPlayer.Camera.ReadValue<Vector2>();
             playerCamera.UpdateCamera(cameraInput);
+        }
+
+        public void CheckForInteractions()
+        {
+            playerInteraction.CheckForInteractions();
         }
 
         public bool GroundedCheck()

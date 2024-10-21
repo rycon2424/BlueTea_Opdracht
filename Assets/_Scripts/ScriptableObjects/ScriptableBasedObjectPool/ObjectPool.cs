@@ -41,7 +41,10 @@ namespace Game.Pooling
             }
         }
 
-        public void SpawnObject(GameObject objectToSpawn, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
+        /// <summary>
+        /// Spawn an item using a GameObject as key
+        /// </summary>
+        public GameObject SpawnObject(GameObject objectToSpawn, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
         {
             foreach (PooledObjectSO pool in poolObjects)
             {
@@ -52,17 +55,19 @@ namespace Game.Pooling
                     if (length == 0)
                     {
                         Debug.Log($"The Pool for {objectToSpawn.name} is empty!");
-                        return;
+                        return null;
                     }
 
-                    HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
-
-                    return;
+                    return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                 }
             }
+            return null;
         }
 
-        public void SpawnObject(string poolName, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
+        /// <summary>
+        /// Spawn an item knowing the name of the pool
+        /// </summary>
+        public GameObject SpawnObject(string poolName, Vector3 position, Vector3 rotation, Vector3 rotationOffset = new Vector3(), float time = 0)
         {
             foreach (PooledObjectSO pool in poolObjects)
             {
@@ -73,17 +78,16 @@ namespace Game.Pooling
                     if (length == 0)
                     {
                         Debug.Log($"The Pool {poolName} is empty!");
-                        return;
+                        return null;
                     }
 
-                    HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
-
-                    return;
+                    return HandleObjectSpawning(pool, position, rotation, rotationOffset, time);
                 }
             }
+            return null;
         }
 
-        void HandleObjectSpawning(PooledObjectSO pool, Vector3 position, Vector3 rotation, Vector3 rotationOffset, float time)
+        GameObject HandleObjectSpawning(PooledObjectSO pool, Vector3 position, Vector3 rotation, Vector3 rotationOffset, float time)
         {
             GameObject spawnedObject = pool.spawnedObjects[Random.Range(0, pool.spawnedObjects.Count)];
 
@@ -101,6 +105,8 @@ namespace Game.Pooling
             {
                 StartCoroutine(ReturnToPool(pool, spawnedObject, time));
             }
+
+            return spawnedObject;
         }
 
         IEnumerator ReturnToPool(PooledObjectSO pool, GameObject spawnedObject, float time)

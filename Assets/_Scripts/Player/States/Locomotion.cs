@@ -34,6 +34,7 @@ namespace Game.StateMachines.States
             Movement();
 
             Owner.UpdateCamera();
+            Owner.CheckForInteractions();
         }
 
         void Movement()
